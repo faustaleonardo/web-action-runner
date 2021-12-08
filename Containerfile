@@ -1,7 +1,7 @@
 FROM summerwind/actions-runner:latest
 
 # install buildah and google-chrome
-RUN source /etc/os-release \
+RUN . /etc/os-release \
  && echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/libcontainers.list \
  && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list \
  && curl -L "https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add - \
@@ -12,7 +12,7 @@ RUN source /etc/os-release \
 
 # install nvm
 RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
- && source $HOME/.nvm/nvm.sh \
+ && . $HOME/.nvm/nvm.sh \
  && nvm install 14
 
 # install aws cli
