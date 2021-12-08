@@ -35,4 +35,5 @@ jobs:
         with:
           image: ghcr.io/traveloka/web-action-runner
           tags: latest
+          containerfiles: Containerfile
 
