@@ -10,16 +10,18 @@ RUN . /etc/os-release \
  && sudo apt upgrade -q -y \
  && sudo apt install -q -y buildah google-chrome-stable bison --no-install-recommends
 
-# install nvm
-RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
- && . $HOME/.nvm/nvm.sh \
- && nvm install 14
-
 # install aws cli
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip" \
+RUN cd /tmp \
+ && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip" \
  && unzip awscliv2.zip \
  && sudo ./aws/install \
  && rm -rf aws awscliv2.zip
+
+# install nvm
+env NVM_DIR="$HOME/.nvm"
+RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
+ && . $HOME/.nvm/nvm.sh \
+ && nvm install 14
 
 # install golang
 env PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
