@@ -20,7 +20,8 @@ RUN cd /tmp \
 # install nvm
 env NVM_DIR="$HOME/.nvm"
 RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
- && . $HOME/.nvm/nvm.sh \
+ && sed -i '1i . $NVM_DIR/nvm.sh' $HOME/.bashrc \
+ && . $NVM_DIR/nvm.sh \
  && nvm install 14 \
  && npm install -g yarn
 
