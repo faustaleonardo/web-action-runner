@@ -21,7 +21,8 @@ RUN cd /tmp \
 env NVM_DIR="$HOME/.nvm"
 RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
  && . $HOME/.nvm/nvm.sh \
- && nvm install 14
+ && nvm install 14 \
+ && npm install -g yarn
 
 # install golang
 env PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
