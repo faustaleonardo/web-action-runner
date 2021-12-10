@@ -22,11 +22,10 @@ env PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 RUN curl -sLk https://git.io/gobrew | sh - \
  && gobrew install 1.17
 
-# install nvm
-env NVM_DIR="$HOME/.nvm"
-RUN curl -s https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash \
- && sed -i '2i . $NVM_DIR/nvm.sh' /runnertmp/patched/runsvc.sh \
- && . $NVM_DIR/nvm.sh \
- && nvm install 14 \
- && npm install -g yarn
+# install volta
+env VOLTA_HOME="$HOME/.volta"
+env PATH="$PATH:$VOLTA_HOME/bin"
+RUN curl https://get.volta.sh | bash \
+ && volta install node@14 \
+ && volta install yarn
 
