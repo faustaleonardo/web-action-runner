@@ -8,7 +8,7 @@ RUN . /etc/os-release \
  && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y buildah google-chrome-stable bison --no-install-recommends
+ && sudo apt install -q -y buildah podman google-chrome-stable bison --no-install-recommends
 
 # install aws cli
 RUN cd /tmp \
