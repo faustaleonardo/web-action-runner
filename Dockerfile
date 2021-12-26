@@ -29,3 +29,8 @@ RUN curl https://get.volta.sh | bash \
  && volta install node@14 \
  && volta install yarn
 
+# ecr login
+RUN sudo curl -L -o /usr/bin/docker-credential-ecr-login https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/0.5.0/linux-amd64/docker-credential-ecr-login \
+ && sudo chmod +x /usr/bin/docker-credential-ecr-login \
+ && mkdir -p $HOME/.docker \
+ && echo '{"credsStore": "ecr-login"}' > $HOME/.docker/config.json
