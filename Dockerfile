@@ -1,4 +1,4 @@
-FROM summerwind/actions-runner@sha256:446c638534939b5be43b9366106def24380d283d34797066d672dbc4f3eb530d
+FROM summerwind/actions-runner:latest
 
 # install buildah and google-chrome
 RUN true \
