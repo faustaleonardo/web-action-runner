@@ -26,6 +26,7 @@ RUN curl -sLk https://git.io/gobrew | sh - \
 env VOLTA_HOME="$HOME/.volta"
 env PATH="$PATH:$VOLTA_HOME/bin"
 RUN curl https://get.volta.sh | bash \
+ && volta install node@16 \
  && volta install node@14 \
  && volta install yarn
 
