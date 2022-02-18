@@ -1,6 +1,6 @@
 FROM summerwind/actions-runner:latest
 
-# install buildah and google-chrome
+# install docker cli and google-chrome
 RUN true \
  && echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
  && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list \
@@ -29,6 +29,10 @@ RUN curl https://get.volta.sh | bash \
  && volta install node@16 \
  && volta install node@14 \
  && volta install yarn
+ 
+# install depgraph
+RUN sudo curl -L -o /usr/bin/depgraph https://26-460517998-gh.circle-artifacts.com/0/depgraph-x86_64-unknown-linux-gnu \
+ && sudo chmod +x /usr/bin/depgraph
 
 # ecr login
 RUN sudo curl -L -o /usr/bin/docker-credential-ecr-login https://amazon-ecr-credential-helper-releases.s3.us-east-2.amazonaws.com/0.5.0/linux-amd64/docker-credential-ecr-login \
