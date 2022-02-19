@@ -31,7 +31,7 @@ RUN curl https://get.volta.sh | bash \
  && volta install yarn
  
 # install depgraph
-RUN sudo curl -L -o /usr/bin/depgraph https://26-460517998-gh.circle-artifacts.com/0/depgraph-x86_64-unknown-linux-gnu \
+RUN sudo curl -L -o /usr/bin/depgraph https://28-460517998-gh.circle-artifacts.com/0/depgraph-x86_64-unknown-linux-gnu \
  && sudo chmod +x /usr/bin/depgraph
 
 # ecr login
