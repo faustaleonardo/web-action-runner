@@ -1,15 +1,15 @@
 FROM summerwind/actions-runner:latest
 
-# install docker cli and snapd
+# install docker cli and chromium
 RUN true \
  && echo "deb https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
+ && echo 'deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Impish/ /' | sudo tee /etc/apt/sources.list.d/home-ungoogled_chromium.list \
  && curl -sL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+ && curl -sL 'https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key'  | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli snapd --no-install-recommends
+ && sudo apt install -q -y docker-ce-cli ungoogled-chromium --no-install-recommends
 
-# install chromium
-RUN sudo snap install chromium
 
 # install aws cli
 RUN cd /tmp \
