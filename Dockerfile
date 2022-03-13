@@ -3,12 +3,10 @@ FROM summerwind/actions-runner:latest
 # install docker cli and chromium
 RUN true \
  && echo "deb https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
- && echo 'deb http://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Impish/ /' | sudo tee /etc/apt/sources.list.d/home-ungoogled_chromium.list \
  && curl -sL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
- && curl -sL 'https://download.opensuse.org/repositories/home:/ungoogled_chromium/Ubuntu_Focal/Release.key'  | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli ungoogled-chromium --no-install-recommends
+ && sudo apt install -q -y docker-ce-cli chromium-browser --no-install-recommends
 
 
 # install aws cli
