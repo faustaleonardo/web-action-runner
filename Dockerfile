@@ -1,13 +1,14 @@
 FROM summerwind/actions-runner:latest
 
-# install docker cli and chromium
+# install docker cli and google-chrome
 RUN true \
  && echo "deb https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
+ && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list \
  && curl -sL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+ && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli chromium-browser --no-install-recommends
-
+ && sudo apt install -q -y docker-ce-cli google-chrome-stable --no-install-recommends
 
 # install aws cli
 RUN cd /tmp \
