@@ -1,4 +1,4 @@
-FROM summerwind/actions-runner:latest
+FROM summerwind/actions-runner:v2.289.1-ubuntu-20.04-4cbbcd6
 
 # install docker cli and google-chrome
 RUN true \
