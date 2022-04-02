@@ -1,4 +1,4 @@
-FROM summerwind/actions-runner:v2.289.1-ubuntu-20.04-4cbbcd6
+FROM summerwind/actions-runner:latest
 
 # install docker cli and google-chrome
 RUN true \
@@ -36,3 +36,6 @@ RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
  && sudo chmod +x /usr/bin/docker-credential-ecr-login \
  && mkdir -p $HOME/.docker \
  && echo '{"credsStore": "ecr-login"}' > $HOME/.docker/config.json
+
+# update PATH
+RUN sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
