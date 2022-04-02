@@ -38,4 +38,4 @@ RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
  && echo '{"credsStore": "ecr-login"}' > $HOME/.docker/config.json
 
 # update PATH
-RUN sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
+RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
