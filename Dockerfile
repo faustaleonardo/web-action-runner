@@ -20,7 +20,7 @@ RUN cd /tmp \
 # install golang
 env PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 RUN curl -sLk https://git.io/gobrew | sh - \
- && gobrew install 1.17
+ && gobrew install 1.18
 
 # install volta
 env VOLTA_HOME="$HOME/.volta"
