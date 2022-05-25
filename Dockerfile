@@ -4,14 +4,11 @@ FROM summerwind/actions-runner:latest
 RUN true \
  && echo "deb https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
  && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list \
- && echo "deb https://deb.nodesource.com/node_16.x focal main" | sudo tee /etc/apt/sources.list.d/nodesource.list \
  && curl -sL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
  && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
- && curl -sL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli nodejs --no-install-recommends \
- && if [ $(uname -m) = "x86_64" ]; then sudo apt install -q -y google-chrome-stable --no-install-recommends; fi
+ && sudo apt install -q -y docker-ce-cli google-chrome-stable --no-install-recommends
 
 # install aws cli
 RUN cd /tmp \
@@ -24,6 +21,14 @@ RUN cd /tmp \
 env PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 RUN curl -sLk https://git.io/gobrew | sh - \
  && gobrew install 1.18
+
+# install volta
+env VOLTA_HOME="$HOME/.volta"
+env PATH="$PATH:$VOLTA_HOME/bin"
+RUN curl https://get.volta.sh | bash \
+ && volta install node@16 \
+ && volta install node@14 \
+ && volta install yarn
 
 # ecr login
 RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
