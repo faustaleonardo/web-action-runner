@@ -1,6 +1,6 @@
-FROM summerwind/actions-runner:latest
+FROM summerwind/actions-runner:latest AS builder
 
-# install docker cli and google-chrome
+# install docker cli
 RUN true \
  && echo "deb https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list \
  && echo "deb http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list \
@@ -8,7 +8,7 @@ RUN true \
  && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli google-chrome-stable --no-install-recommends
+ && sudo apt install -q -y docker-ce-cli --no-install-recommends
 
 # install aws cli
 RUN cd /tmp \
@@ -39,3 +39,8 @@ RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
 
 # update PATH
 RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
+
+
+### builder + browser
+FROM builder AS browser
+RUN sudo apt install -q -y docker-ce-cli --no-install-recommends
