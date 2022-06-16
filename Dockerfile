@@ -43,4 +43,4 @@ RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
 
 ### builder + browser
 FROM builder AS browser
-RUN sudo apt install -q -y docker-ce-cli --no-install-recommends
+RUN sudo apt install -q -y google-chrome-stable --no-install-recommends
