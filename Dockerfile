@@ -1,4 +1,4 @@
-FROM summerwind/actions-runner:latest AS builder
+FROM ghcr.io/actions-runner-controller/actions-runner-controller/actions-runner:latest AS builder
 
 # install docker cli
 RUN true \
