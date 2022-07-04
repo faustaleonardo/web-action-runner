@@ -27,7 +27,6 @@ env VOLTA_HOME="$HOME/.volta"
 env PATH="$PATH:$VOLTA_HOME/bin"
 RUN curl https://get.volta.sh | bash \
  && volta install node@16 \
- && volta install node@14 \
  && volta install yarn
 
 # ecr login
@@ -36,6 +35,11 @@ RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
  && sudo chmod +x /usr/bin/docker-credential-ecr-login \
  && mkdir -p $HOME/.docker \
  && echo '{"credsStore": "ecr-login"}' > $HOME/.docker/config.json
+ 
+# install cosign
+RUN arch=$() \
+ && sudo curl -L -o /usr/bin/cosign https://github.com/sigstore/cosign/releases/download/v1.9.0/cosign-linux-amd64 \
+ && sudo chmod +x /usr/bin/cosign
 
 # update PATH
 RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
