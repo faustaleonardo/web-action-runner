@@ -13,7 +13,7 @@ RUN true \
 # install aws cli
 RUN cd /tmp \
  && curl "https://awscli.amazonaws.com/awscli-exe-linux-$(uname -m).zip" -o "awscliv2.zip" \
- && unzip awscliv2.zip \
+ && unzip -q awscliv2.zip \
  && sudo ./aws/install \
  && rm -rf aws awscliv2.zip
 
