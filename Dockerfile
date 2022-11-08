@@ -27,7 +27,7 @@ env VOLTA_HOME="$HOME/.volta"
 env PATH="$PATH:$VOLTA_HOME/bin"
 RUN curl https://get.volta.sh | bash \
  && volta install node@16 \
- && volta install yarn
+ && volta install yarn@1
 
 # ecr login
 RUN arch=$(test $(uname -m) = "aarch64" && echo arm64 || echo amd64) \
