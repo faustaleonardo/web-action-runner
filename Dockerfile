@@ -8,7 +8,7 @@ RUN true \
  && curl -sL https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
  && sudo apt update -q \
  && sudo apt upgrade -q -y \
- && sudo apt install -q -y docker-ce-cli --no-install-recommends
+ && sudo apt install -q -y docker-ce-cli zstd --no-install-recommends
 
 # install aws cli
 RUN cd /tmp \
