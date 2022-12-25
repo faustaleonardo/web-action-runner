@@ -42,4 +42,4 @@ RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
 
 ### builder + browser
 FROM builder AS browser
-RUN sudo apt install -q -y chromium-browser --no-install-recommends
+RUN sudo apt install -q -y google-chrome-stable --no-install-recommends
