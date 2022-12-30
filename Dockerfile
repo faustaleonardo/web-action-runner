@@ -74,6 +74,9 @@ ENV VOLTA_HOME="$HOME/.volta"
 ENV PATH="$PATH:$VOLTA_HOME/bin"
 COPY --link --from=volta $VOLTA_HOME $VOLTA_HOME
 
+# update PATH
+RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
+
 # --------------------------
 
 ### builder + browser
