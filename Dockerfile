@@ -14,8 +14,8 @@ ENV PATH="$PATH:$VOLTA_HOME/bin"
 RUN volta_bin=${VOLTA_HOME}/bin \
  && mkdir -p ${volta_bin} \
  && volta_name=$(test $(uname -m) = "aarch64" && echo 'linux-arm64' || echo 'linux') \
- && curl -sL https://github.com/abihf/volta-release/releases/download/v${VOLTA_VERSION}/volta-${VOLTA_VERSION}-${volta_name}.tar.gz | tar -xzC ${volta_bin} \
- && chmod +x ${volta_bin}/* \
+ && curl -sL https://github.com/abihf/volta-release/releases/download/v${VOLTA_VERSION}/volta-${VOLTA_VERSION}-${volta_name}.tar.gz | tar -xzC ${volta_bin}
+RUN true \
  && volta install node@18 \
  && volta install node@16 \
  && volta install yarn@1
@@ -72,7 +72,7 @@ COPY --link --from=golang /usr/local/go /usr/local/go
 # install volta
 ENV VOLTA_HOME="$HOME/.volta"
 ENV PATH="$PATH:$VOLTA_HOME/bin"
-COPY --link --from=volta $VOLTA_HOME $VOLTA_HOME
+COPY --link --from=volta --chown=1001 $VOLTA_HOME $VOLTA_HOME
 
 # update PATH
 RUN sudo sed -i "/^PATH=/c\PATH=$PATH" /etc/environment
