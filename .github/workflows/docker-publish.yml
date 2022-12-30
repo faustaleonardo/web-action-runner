@@ -71,7 +71,7 @@ jobs:
           pull: true
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:builder
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           outputs: type=image,oci-mediatypes=true,compression=zstd,force-compression=true
@@ -82,7 +82,6 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           target: browser
-          pull: true
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:browser
           platforms: linux/amd64
